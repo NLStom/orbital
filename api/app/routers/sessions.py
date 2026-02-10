@@ -24,7 +24,7 @@ from app.config import get_settings
 router = APIRouter(prefix="/api/sessions", tags=["sessions"])
 
 
-VALID_DATA_SOURCES = {"vndb", "vndb_collaboration", "polymarket", "steam", "custom"}
+VALID_DATA_SOURCES = {"custom"}
 
 
 class GenerateTitleResponse(BaseModel):

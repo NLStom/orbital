@@ -134,11 +134,11 @@ def get_agent_for_source(
 
 def get_agent() -> OrbitalAgent:
     """
-    Get the default OrbitalAgent (vndb).
+    Get the default OrbitalAgent (custom).
 
     For backwards compatibility.
     """
-    agent, _ = get_agent_for_source("vndb")
+    agent, _ = get_agent_for_source("custom")
     return agent
 
 

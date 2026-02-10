@@ -10,7 +10,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.routers import chat, datasets, models, session_datasets, session_events, sessions
+from app.routers import artifacts, chat, config, datasets, models, session_datasets, session_events, sessions
 
 # Configure logging
 log_level = os.getenv("LOG_LEVEL", "INFO").upper()
@@ -74,9 +74,14 @@ if env_origins:
 else:
     allowed_origins = _default_allowed_origins
 
+# Support wildcard patterns for Vercel preview deploys (e.g. ".*\.vercel\.app")
+origin_pattern = os.getenv("ALLOWED_ORIGIN_PATTERN")
+allow_origin_regex = f"https://{origin_pattern}" if origin_pattern else None
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
+    allow_origin_regex=allow_origin_regex,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -89,6 +94,8 @@ app.include_router(models.router)
 app.include_router(datasets.router)
 app.include_router(session_datasets.router)
 app.include_router(session_events.router)
+app.include_router(artifacts.router)
+app.include_router(config.router)
 
 
 # --- Exception Handlers ---

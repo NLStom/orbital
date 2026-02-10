@@ -33,8 +33,8 @@ if [[ "$GIT_DIR" == *".git/worktrees/"* ]]; then
     export ORBITAL_INSTANCE_SUFFIX="-${WORKSPACE_NAME}"
 else
     # Main worktree - default ports
-    export ORBITAL_API_PORT=8787
-    export ORBITAL_WEB_PORT=3737
+    export ORBITAL_API_PORT=8789
+    export ORBITAL_WEB_PORT=3739
     export ORBITAL_INSTANCE_SUFFIX=""
 fi
 

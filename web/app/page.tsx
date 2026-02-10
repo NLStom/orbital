@@ -7,6 +7,7 @@ import { SessionList } from "./_components/SessionList";
 import { ArtifactGrid } from "./_components/ArtifactGrid";
 import { DatasetPickerModal } from "./_components/DatasetPickerModal";
 import { EmptyState } from "./_components/EmptyState";
+import { ApiKeyInput } from "./_components/ApiKeyInput";
 import { api, DataSourceType, DatasetSummary } from "./_lib/api";
 
 type Tab = "sessions" | "artifacts";
@@ -115,7 +116,9 @@ export default function Home() {
 
   const handleSelectSampleData = async (dataSource: DataSourceType) => {
     try {
-      const id = await createSession(dataSource, `${dataSource.toUpperCase()} Analysis`);
+      // Seed demo dataset (idempotent) and attach it to the new session
+      const dataset = await api.seedDemoDataset();
+      const id = await createSession(dataSource, "US Housing Market Analysis", [dataset.id]);
       router.push(`/session/${id}`);
     } catch {
       // Error is handled in store
@@ -147,6 +150,7 @@ export default function Home() {
                 AI-powered exploratory data analysis
               </p>
             </div>
+            <ApiKeyInput />
             {!showEmptyState && (
               <div className="flex items-center gap-2">
                 {emptySessionCount > 0 && (

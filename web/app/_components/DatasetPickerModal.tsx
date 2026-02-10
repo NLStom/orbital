@@ -5,12 +5,7 @@ import { DataSourceType, DatasetSummary } from "@/app/_lib/api";
 import { CSVUploadZone } from "./CSVUploadZone";
 
 // Map well-known dataset names to data source types
-const DATASET_TO_SOURCE: Record<string, DataSourceType> = {
-  "Visual Novel Database": "vndb",
-  "VNDB Staff Collaboration": "vndb_collaboration",
-  Polymarket: "polymarket",
-  "Steam Games": "steam",
-};
+const DATASET_TO_SOURCE: Record<string, DataSourceType> = {};
 
 interface DatasetPickerModalProps {
   isOpen: boolean;

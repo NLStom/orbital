@@ -70,12 +70,7 @@ export interface HealthResponse {
 }
 
 // Session types
-export type DataSourceType =
-  | "vndb"
-  | "vndb_collaboration"
-  | "polymarket"
-  | "steam"
-  | "custom";
+export type DataSourceType = "custom";
 
 export interface SessionSummary {
   id: string;
@@ -522,6 +517,17 @@ export async function getDataset(id: string): Promise<DatasetFull> {
   return res.json();
 }
 
+export async function seedDemoDataset(): Promise<DatasetFull> {
+  const res = await fetch(`${API_BASE_URL}/api/datasets/seed-demo`, {
+    method: "POST",
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.detail || "Failed to seed demo dataset");
+  }
+  return res.json();
+}
+
 export async function uploadDataset(
   files: File[],
   name?: string,
@@ -714,6 +720,23 @@ export async function logSystemEvent(
   return res.json();
 }
 
+// Config API functions
+export async function configureApiKey(key: string): Promise<{ ok: boolean }> {
+  const res = await fetch(`${API_BASE_URL}/api/config`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ google_api_key: key }),
+  });
+  if (!res.ok) throw new Error("Failed to configure API key");
+  return res.json();
+}
+
+export async function getConfigStatus(): Promise<{ google_api_key_set: boolean }> {
+  const res = await fetch(`${API_BASE_URL}/api/config/status`);
+  if (!res.ok) throw new Error("Failed to get config status");
+  return res.json();
+}
+
 export const api = {
   sendMessage,
   checkHealth,
@@ -744,6 +767,7 @@ export const api = {
   // System events
   logSystemEvent,
   // Datasets
+  seedDemoDataset,
   listDatasets,
   getDataset,
   uploadDataset,
@@ -754,4 +778,7 @@ export const api = {
   detachDatasetFromSession,
   listSessionDatasets,
   listDerivedTables,
+  // Config
+  configureApiKey,
+  getConfigStatus,
 };

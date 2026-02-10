@@ -14,32 +14,10 @@ const SAMPLE_DATASETS: {
   examples: string[];
 }[] = [
   {
-    id: "vndb",
-    name: "Visual Novel Database",
-    description: "728 visual novels with characters, tags, and relationships",
-    examples: ["Top rated VNs by genre", "Character relationship networks", "Tag co-occurrence patterns"],
-  },
-  {
-    id: "vndb_collaboration",
-    name: "VNDB Staff Collaboration",
-    description: "Staff collaboration graph with alias metadata",
-    examples: [
-      "Most connected staff clusters",
-      "Cross-studio collaboration",
-      "Team structures by VN",
-    ],
-  },
-  {
-    id: "polymarket",
-    name: "Polymarket",
-    description: "7,653 prediction markets with price history",
-    examples: ["Market volume trends", "Category analysis", "Outcome correlations"],
-  },
-  {
-    id: "steam",
-    name: "Steam Games",
-    description: "122,611 games with reviews and metadata",
-    examples: ["Genre popularity over time", "Review sentiment analysis", "Publisher networks"],
+    id: "custom",
+    name: "US Housing Market",
+    description: "Home values and economic indicators across US regions (2015–2024)",
+    examples: ["What drives home values?", "Build a predictive model", "Compare regions over time"],
   },
 ];
 

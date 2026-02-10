@@ -14,7 +14,7 @@ Built with **Gemini 3 Pro** (via Vertex AI), FastAPI, and Next.js.
 - **Python** 3.11+
 - **PostgreSQL** running locally
 - **uv** (Python package manager) — `curl -LsSf https://astral.sh/uv/install.sh | sh`
-- **Google Cloud** credentials with Vertex AI enabled, OR a `GOOGLE_API_KEY`
+- **Google API key** — can be set via `.env` or pasted in the UI at runtime
 
 ### 1. Create the database
 
@@ -28,7 +28,7 @@ createdb orbital
 cp .env.example .env
 ```
 
-Edit `.env` and set your credentials:
+Edit `.env` and set your credentials (or skip this — you can paste your API key in the UI instead):
 
 ```env
 # Option A: Vertex AI (recommended)
@@ -37,6 +37,8 @@ GOOGLE_GENAI_USE_VERTEXAI=true
 
 # Option B: Google AI Studio API key
 GOOGLE_API_KEY=your-key-here
+
+# Option C: Skip .env entirely — paste your key in the UI after starting the app
 ```
 
 ### 3. Install dependencies
@@ -75,6 +77,7 @@ This walkthrough demonstrates Orbital's core loop: **upload data → ask questio
 
 1. Start the servers (`./pm2-dev.sh start`)
 2. Open http://localhost:3737
+3. If you haven't set `GOOGLE_API_KEY` in `.env`, paste your Google API key in the input field in the header and click **Save**
 
 ### Step-by-step
 
@@ -215,12 +218,12 @@ cd web && npm run build
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `GOOGLE_API_KEY` | Yes* | Google AI Studio API key |
+| `GOOGLE_API_KEY` | No* | Google AI Studio API key (can also be set via UI) |
 | `GOOGLE_GENAI_USE_VERTEXAI` | No | Set `true` to use Vertex AI instead |
 | `DATABASE_URL` | No | PostgreSQL URL (default: `postgresql://localhost/orbital`) |
 | `DEFAULT_MODEL` | No | Model name (default: `vertex-gemini-3-pro`) |
 
-*Either `GOOGLE_API_KEY` or Vertex AI credentials (via `gcloud auth`) required.
+*Either `GOOGLE_API_KEY` (env or UI), or Vertex AI credentials (via `gcloud auth`) required.
 
 ### Adding a new agent tool
 

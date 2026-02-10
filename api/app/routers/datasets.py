@@ -154,6 +154,75 @@ async def upload_dataset(
     raise HTTPException(status_code=500, detail="Failed to retrieve uploaded dataset")
 
 
+@router.post("/seed-demo", status_code=status.HTTP_201_CREATED, response_model=Dataset)
+def seed_demo_dataset(
+    storage: DatasetStorage = Depends(get_dataset_storage),
+    database_url: str = Depends(get_database_url),
+):
+    """
+    Seed the demo dataset from data/demo/ CSV files.
+
+    Idempotent: if a dataset named 'US Housing Market' already exists, returns it.
+    """
+    from pathlib import Path
+
+    DEMO_NAME = "US Housing Market"
+
+    # Check if demo dataset already exists
+    existing = storage.list_datasets()
+    for ds in existing:
+        if ds["name"] == DEMO_NAME:
+            return Dataset(**ds)
+
+    # Locate demo CSV files (only core tables — others can be added later)
+    demo_dir = Path(__file__).parent.parent.parent.parent / "data" / "demo"
+    DEMO_FILES = ["home_values.csv", "economic.csv"]
+    csv_files = [demo_dir / f for f in DEMO_FILES if (demo_dir / f).exists()]
+    if not csv_files:
+        raise HTTPException(status_code=404, detail="No demo CSV files found")
+
+    # Parse all CSVs
+    parsed_files = []
+    for csv_path in csv_files:
+        content = csv_path.read_bytes()
+        try:
+            df = parse_csv(content)
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Failed to parse '{csv_path.name}': {e}")
+        table_name = sanitize_table_name(csv_path.name)
+        parsed_files.append((table_name, df, csv_path.name))
+
+    # Create dataset record
+    dataset = storage.create_dataset(name=DEMO_NAME, visibility="public")
+    dataset_id = dataset["id"]
+
+    # Load each CSV into PG
+    for table_name, df, filename in parsed_files:
+        pg_table_name = f"_dataset_{dataset_id}_{table_name}"
+        try:
+            row_count = load_dataframe_to_pg(df=df, pg_table_name=pg_table_name, database_url=database_url)
+        except Exception as e:
+            logger.error(f"Failed to load demo '{filename}' into PG: {e}")
+            storage.delete_dataset(dataset_id)
+            raise HTTPException(status_code=500, detail=f"Failed to load '{filename}' into database")
+
+        columns = list(df.columns)
+        dtypes = {col: _pandas_dtype_to_pg_label(df[col].dtype) for col in columns}
+        storage.add_table(
+            dataset_id=dataset_id,
+            name=table_name,
+            pg_table_name=pg_table_name,
+            row_count=row_count,
+            columns=columns,
+            dtypes=dtypes,
+        )
+
+    dataset_dict = storage.get_dataset(dataset_id)
+    if dataset_dict:
+        return Dataset(**dataset_dict)
+    raise HTTPException(status_code=500, detail="Failed to retrieve seeded dataset")
+
+
 MAX_PREVIEW_LIMIT = 1000
 
 

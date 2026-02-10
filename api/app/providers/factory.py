@@ -12,6 +12,7 @@ from app.config import Settings
 from app.providers.base import LLMProvider
 from app.providers.gemini import GeminiProvider
 from app.providers.vertex_ai import VertexAIProvider
+from app.routers.config import get_runtime_api_key
 
 
 class LLMProviderType(str, Enum):
@@ -84,10 +85,11 @@ class ProviderFactory:
                 )
 
             case LLMProviderType.VERTEX_AI:
-                if not self.settings.google_api_key:
+                api_key = get_runtime_api_key() or self.settings.google_api_key
+                if not api_key:
                     raise ValueError("GOOGLE_API_KEY not configured for Vertex AI")
                 return VertexAIProvider(
-                    api_key=self.settings.google_api_key,
+                    api_key=api_key,
                     model_id=config.model_id,
                 )
 
@@ -101,7 +103,7 @@ class ProviderFactory:
             case LLMProviderType.GEMINI:
                 return bool(self.settings.gemini_api_key)
             case LLMProviderType.VERTEX_AI:
-                return bool(self.settings.google_api_key)
+                return bool(get_runtime_api_key() or self.settings.google_api_key)
 
         return False
 
@@ -119,7 +121,7 @@ class ProviderFactory:
                 case LLMProviderType.GEMINI:
                     has_key = bool(self.settings.gemini_api_key)
                 case LLMProviderType.VERTEX_AI:
-                    has_key = bool(self.settings.google_api_key)
+                    has_key = bool(get_runtime_api_key() or self.settings.google_api_key)
 
             if has_key:
                 available.append(

@@ -4,7 +4,7 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
-DataSource = Literal["vndb", "vndb_collaboration", "polymarket", "steam", "custom"]
+DataSource = Literal["custom"]
 
 
 class MemoryEntry(BaseModel):
