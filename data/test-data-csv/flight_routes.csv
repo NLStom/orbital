@@ -1,0 +1,25 @@
+origin,destination,airline,flights_per_week,avg_passengers,distance_km,avg_price_usd
+Tokyo,Seoul,ANA,28,280,1160,250
+Tokyo,Shanghai,JAL,21,260,1770,320
+Tokyo,Los Angeles,ANA,14,350,8815,890
+Seoul,Tokyo,Korean Air,28,275,1160,245
+Seoul,Beijing,Asiana,21,240,955,180
+Shanghai,Tokyo,China Eastern,21,255,1770,310
+Shanghai,Singapore,China Southern,14,230,3830,420
+Los Angeles,Tokyo,United,14,340,8815,870
+Los Angeles,New York,Delta,56,310,3945,350
+Los Angeles,London,British Airways,14,320,8780,780
+New York,Los Angeles,American,56,305,3945,340
+New York,London,Delta,42,330,5570,650
+New York,Paris,Air France,28,290,5840,700
+London,New York,Virgin Atlantic,42,325,5570,640
+London,Paris,EasyJet,56,180,340,120
+London,Dubai,Emirates,28,350,5500,580
+Paris,London,Air France,56,175,340,115
+Paris,New York,Delta,28,285,5840,690
+Singapore,Shanghai,Singapore Airlines,14,245,3830,430
+Singapore,Dubai,Emirates,21,300,5850,520
+Dubai,London,Emirates,28,345,5500,570
+Dubai,Singapore,Flydubai,21,280,5850,490
+Beijing,Seoul,Air China,21,235,955,175
+Beijing,Tokyo,Air China,14,250,2100,350

@@ -1,0 +1,26 @@
+employee_id,name,department,manager_id,title,salary,hire_date,location,status
+E001,Sarah Johnson,Engineering,E010,Senior Engineer,125000,2020-03-15,San Francisco,active
+E002,Mike Chen,Engineering,E010,Engineer,105000,2021-06-01,San Francisco,active
+E003,Lisa Park,Engineering,E001,Junior Engineer,85000,2023-01-10,Remote,active
+E004,Tom Brown,Marketing,E011,Marketing Lead,110000,2019-08-20,New York,active
+E005,Amy Davis,Marketing,E004,Content Writer,72000,2022-04-15,New York,active
+E006,James Wilson,Mktg,E004,SEO Specialist,6500,2022-09-01,Remote,active
+E007,Nina Patel,Sales,E012,Account Executive,95000,2021-02-28,Chicago,active
+E008,Oscar Garcia,Sales,E012,Sales Rep,68000,2023-05-15,Chicago,active
+E009,Rachel Kim,Sales,E007,Sales Rep,65000,2023-11-01,Remote,active
+E010,David Lee,Engineering,E013,VP Engineering,165000,2018-01-10,San Francisco,active
+E011,Karen White,marketing,E013,VP Marketing,155000,2018-06-15,New York,active
+E012,Steve Adams,Sales,E013,VP Sales,150000,2019-01-20,Chicago,active
+E013,Julia Roberts,Executive,E099,CEO,220000,2017-03-01,San Francisco,active
+E014,Ryan Tanaka,Eng,E010,Engineer,8500,2021-08-15,Remote,active
+E015,Maria Lopez,Engineering,E001,Engineer,102000,2022-01-20,San Francisco,active
+E016,Kevin Tran,Engineering,E001,Junior Engineer,78000,,Remote,active
+E017,Diana Ross,Sales,E012,Sales Rep,62000,2024-02-10,Remote,active
+E018,Chris Evans,Product,E013,Product Lead,130000,2020-05-12,San Francisco,active
+E019,Emma Stone,Product,E018,Product Manager,98000,2022-08-01,Remote,active
+E020,Brian Cox,Finance,E013,Finance Director,140000,2019-04-22,Chicago,active
+E021,Laura Chen,Engineering,E010,Senior Engineer,118000,2020-11-03,Remote,active
+E022,Mark Johnson,HR,E013,HR Director,115000,2018-09-15,New York,active
+E023,Sophie Turner,Engineering,E001,Engineer,95000,2023-06-20,Remote,active
+E024,Alex Kim,Marketing,E004,Designer,78000,2026-03-15,Remote,active
+E025,Jessica Wu,Sales,E007,Sales Rep,64000,2024-01-08,Remote,active

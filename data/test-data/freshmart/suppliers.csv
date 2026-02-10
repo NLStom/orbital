@@ -1,0 +1,8 @@
+supplier_id,name,region,contact_email,reliability_score,avg_delivery_days
+S001,Pacific Fruits Co,North,contact@pacificfruits.com,0.92,2
+S002,Berry Best Farms,North,orders@berrybest.com,0.88,1
+S003,Tropical Imports,South,sales@tropicalimports.com,0.71,4
+S004,Valley Dairy,North,info@valleydairy.com,0.95,1
+S005,Artisan Bakehouse,Local,hello@artisanbakehouse.com,0.97,0
+S006,TechSource Inc,East,b2b@techsource.com,0.99,3
+S007,Global Pantry,West,wholesale@globalpantry.com,0.94,5

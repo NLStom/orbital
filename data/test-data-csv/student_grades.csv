@@ -1,0 +1,25 @@
+student_id,student_name,course,semester,grade,credits,instructor
+S001,Emma Thompson,Calculus I,Fall 2024,A,4,Dr. Williams
+S001,Emma Thompson,Physics I,Fall 2024,A-,4,Dr. Patel
+S001,Emma Thompson,English 101,Fall 2024,B+,3,Prof. Garcia
+S002,Liam Johnson,Calculus I,Fall 2024,B,4,Dr. Williams
+S002,Liam Johnson,Chemistry I,Fall 2024,B+,4,Dr. Chen
+S002,Liam Johnson,History 101,Fall 2024,A,3,Prof. Adams
+S003,Sophia Martinez,Biology I,Fall 2024,A,4,Dr. Brown
+S003,Sophia Martinez,English 101,Fall 2024,A-,3,Prof. Garcia
+S003,Sophia Martinez,Statistics,Fall 2024,B+,3,Dr. Kim
+S004,Noah Williams,Physics I,Fall 2024,C+,4,Dr. Patel
+S004,Noah Williams,Calculus I,Fall 2024,B-,4,Dr. Williams
+S004,Noah Williams,Computer Science 101,Fall 2024,A,3,Dr. Lee
+S005,Olivia Brown,Chemistry I,Fall 2024,A-,4,Dr. Chen
+S005,Olivia Brown,Biology I,Fall 2024,A,4,Dr. Brown
+S005,Olivia Brown,Statistics,Fall 2024,A,3,Dr. Kim
+S001,Emma Thompson,Calculus II,Spring 2025,A-,4,Dr. Williams
+S001,Emma Thompson,Physics II,Spring 2025,B+,4,Dr. Patel
+S002,Liam Johnson,Calculus II,Spring 2025,B+,4,Dr. Williams
+S002,Liam Johnson,Chemistry II,Spring 2025,B,4,Dr. Chen
+S003,Sophia Martinez,Biology II,Spring 2025,A,4,Dr. Brown
+S003,Sophia Martinez,Organic Chemistry,Spring 2025,B+,4,Dr. Chen
+S004,Noah Williams,Physics II,Spring 2025,B,4,Dr. Patel
+S004,Noah Williams,Data Structures,Spring 2025,A-,3,Dr. Lee
+S005,Olivia Brown,Biochemistry,Spring 2025,A-,4,Dr. Brown

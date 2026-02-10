@@ -1,0 +1,21 @@
+date,city,temp_high_c,temp_low_c,humidity_pct,wind_speed_kmh,precipitation_mm,condition
+2025-01-01,Tokyo,8,2,55,12,0,Clear
+2025-01-01,New York,-2,-8,70,25,5,Snow
+2025-01-01,London,6,2,82,18,3,Rain
+2025-01-01,Sydney,28,21,60,15,0,Sunny
+2025-01-08,Tokyo,7,1,50,10,0,Clear
+2025-01-08,New York,1,-5,65,20,0,Cloudy
+2025-01-08,London,5,1,85,22,8,Rain
+2025-01-08,Sydney,30,22,55,12,0,Sunny
+2025-01-15,Tokyo,9,3,48,8,0,Clear
+2025-01-15,New York,-4,-10,72,30,12,Snow
+2025-01-15,London,4,0,88,28,15,Storm
+2025-01-15,Sydney,32,24,50,10,0,Sunny
+2025-01-22,Tokyo,6,0,52,15,2,Cloudy
+2025-01-22,New York,3,-3,60,18,0,Clear
+2025-01-22,London,7,3,78,14,1,Cloudy
+2025-01-22,Sydney,27,20,65,20,10,Rain
+2025-01-29,Tokyo,10,4,45,8,0,Clear
+2025-01-29,New York,0,-6,68,22,3,Snow
+2025-01-29,London,8,4,75,12,0,Cloudy
+2025-01-29,Sydney,29,22,58,14,0,Sunny

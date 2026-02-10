@@ -1,0 +1,36 @@
+date,city,temp_high_c,temp_low_c,humidity_pct,wind_speed_kmh,precipitation_mm,condition
+2025-01-06,London,6,2,85,22,8,Rain
+2025-01-06,New York,-1,-6,65,18,0,Clear
+2025-01-06,Tokyo,9,3,52,10,0,Clear
+2025-01-06,Paris,5,1,80,15,5,Rain
+2025-01-06,Dubai,24,16,45,12,0,Sunny
+2025-01-06,Singapore,31,25,78,8,15,Thunderstorm
+2025-01-07,London,5,1,88,28,12,Storm
+2025-01-07,New York,2,-4,60,15,0,Cloudy
+2025-01-07,Tokyo,8,2,48,8,0,Clear
+2025-01-07,Paris,4,0,82,18,6,Rain
+2025-01-07,Dubai,25,17,42,10,0,Sunny
+2025-01-08,London,4,-1,90,32,18,Storm
+2025-01-08,New York,0,-5,70,22,3,Snow
+2025-01-08,Tokyo,10,4,45,6,0,Clear
+2025-01-08,Paris,3,-1,78,14,2,Cloudy
+2025-01-13,London,7,3,75,15,3,Cloudy
+2025-01-13,New York,-3,-9,72,25,8,Snow
+2025-01-13,Tokyo,7,1,55,12,0,Clear
+2025-01-13,Paris,6,2,70,12,0,Clear
+2025-01-13,Dubai,23,15,48,14,0,Sunny
+2025-01-14,London,8,4,70,12,0,Cloudy
+2025-01-14,New York,1,-4,65,18,0,Clear
+2025-01-14,Tokyo,9,3,50,8,0,Clear
+2025-01-20,London,5,0,92,35,22,Storm
+2025-01-20,New York,3,-2,58,14,0,Clear
+2025-01-20,Tokyo,11,5,48,10,0,Clear
+2025-01-20,Paris,4,-1,85,20,10,Rain
+2025-01-21,London,4,-1,88,30,15,Storm
+2025-01-21,New York,2,-3,62,16,0,Cloudy
+2025-01-27,London,9,5,72,14,1,Cloudy
+2025-01-27,New York,-2,-8,70,20,5,Snow
+2025-01-27,Tokyo,8,2,52,9,0,Clear
+2025-01-27,Paris,7,3,68,10,0,Clear
+2025-01-28,London,10,6,68,10,0,Clear
+2025-01-28,New York,0,-5,65,15,0,Cloudy

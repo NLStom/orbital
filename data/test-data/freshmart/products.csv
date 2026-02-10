@@ -1,0 +1,19 @@
+product_id,name,category,unit_price,supplier_id,perishable,shelf_life_days
+P001,Organic Apples,Produce,4.99,S001,true,14
+P002,Bananas,Produce,1.29,S001,true,7
+P003,Strawberries,Produce,5.99,S002,true,5
+P004,Mangoes,Produce,3.49,S003,true,10
+P005,Oranges,Produce,3.99,S001,true,21
+P006,Grapes,Produce,4.49,S002,true,7
+P007,Whole Milk 1L,Dairy,3.29,S004,true,10
+P008,Greek Yogurt,Dairy,4.99,S004,true,14
+P009,Cheddar Cheese,Dairy,6.49,S004,true,30
+P010,Sourdough Bread,Bakery,4.29,S005,true,5
+P011,Croissants 4pk,Bakery,5.99,S005,true,3
+P012,Wireless Mouse,Electronics,29.99,S006,false,
+P013,USB-C Hub,Electronics,49.99,S006,false,
+P014,Coffee Beans 1kg,Grocery,18.99,S007,false,180
+P015,Olive Oil 500ml,Grocery,,S007,false,365
+P016,Pasta 500g,Grocery,2.49,S007,false,730
+P017,Organic Eggs 12pk,Dairy,6.99,S004,true,21
+P018,Avocados,Produce,1.99,S003,true,5

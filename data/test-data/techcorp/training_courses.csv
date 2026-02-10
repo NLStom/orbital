@@ -1,0 +1,11 @@
+course_id,name,category,duration_hours,cost_per_person,required_for
+TC001,AWS Cloud Fundamentals,Technical,16,500,Engineering
+TC002,Leadership Essentials,Soft Skills,8,300,
+TC003,Advanced Python,Technical,24,600,Engineering
+TC004,Sales Negotiation,Sales,12,400,Sales
+TC005,Data Analytics,Technical,20,550,
+TC006,Project Management,Soft Skills,16,350,Product
+TC007,Public Speaking,Soft Skills,8,250,
+TC008,Security Fundamentals,Technical,12,450,Engineering
+TC009,Customer Success,Sales,8,300,Sales
+TC010,Agile Methodology,Process,12,400,

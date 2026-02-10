@@ -1,0 +1,19 @@
+customer_id,name,email,city,joined_date,loyalty_tier
+C001,Alice Chen,alice.chen@email.com,San Francisco,2023-03-15,gold
+C002,Bob Kim,bob.kim@email.com,Los Angeles,2023-06-20,silver
+C003,Carol Wu,carol.wu@email.com,Seattle,2022-11-08,gold
+C004,Dave Park,dave.park@email.com,Portland,2024-01-12,bronze
+C005,Eve Liu,eve.liu@email.com,San Francisco,2023-08-30,silver
+C006,Frank Zhao,frank.zhao@email.com,Los Angeles,2022-05-17,gold
+C007,Grace Lee,grace.lee@email.com,Seattle,2023-12-01,bronze
+C008,Henry Wang,henry.wang@email.com,Portland,2024-02-28,bronze
+C009,Ivy Zhang,ivy.zhang@email.com,San Francisco,Jan 5, 2023,silver
+C010,Jack Ma,jack.ma@email.com,Los Angeles,2023-07-22,gold
+C011,alice chen,a.chen@gmail.com,San Francisco,03/20/2023,silver
+C012,Karen Ng,karen.ng@email.com,Seattle,2022-09-14,gold
+C013,Leo Tanaka,leo.tanaka@email.com,Portland,2024-03-05,bronze
+C014,Maria Santos,maria.santos@email.com,San Francisco,2023-04-18,silver
+C015,A. Chen,achen@work.com,San Francisco,2023-03-18,gold
+C016,Nathan Park,,Los Angeles,2023-11-30,bronze
+C017,Olivia Kim,olivia.kim@email.com,Seattle,2022-12-25,silver
+C018,Peter Liu,peter.liu@email.com,Portland,2024-01-08,bronze

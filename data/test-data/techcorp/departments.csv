@@ -1,0 +1,7 @@
+department_id,name,budget,head_count_target,location
+D001,Engineering,2500000,25,San Francisco
+D002,Marketing,800000,12,New York
+D003,Sales,1200000,18,Chicago
+D004,Product,600000,8,San Francisco
+D005,HR,400000,6,New York
+D006,Finance,500000,7,Chicago

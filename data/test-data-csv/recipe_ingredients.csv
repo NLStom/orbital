@@ -1,0 +1,26 @@
+recipe,ingredient,amount,unit,category,calories_per_serving
+Spaghetti Carbonara,Spaghetti,200,g,Pasta,320
+Spaghetti Carbonara,Pancetta,100,g,Meat,180
+Spaghetti Carbonara,Egg Yolk,3,pcs,Dairy,165
+Spaghetti Carbonara,Parmesan,50,g,Dairy,200
+Spaghetti Carbonara,Black Pepper,2,g,Spice,5
+Chicken Stir Fry,Chicken Breast,300,g,Meat,270
+Chicken Stir Fry,Bell Pepper,2,pcs,Vegetable,50
+Chicken Stir Fry,Soy Sauce,30,ml,Sauce,15
+Chicken Stir Fry,Garlic,3,cloves,Vegetable,5
+Chicken Stir Fry,Rice,200,g,Grain,260
+Caesar Salad,Romaine Lettuce,1,head,Vegetable,20
+Caesar Salad,Chicken Breast,200,g,Meat,180
+Caesar Salad,Parmesan,30,g,Dairy,120
+Caesar Salad,Croutons,50,g,Grain,100
+Caesar Salad,Caesar Dressing,40,ml,Sauce,140
+Banana Smoothie,Banana,2,pcs,Fruit,210
+Banana Smoothie,Milk,250,ml,Dairy,150
+Banana Smoothie,Honey,15,ml,Sweetener,65
+Banana Smoothie,Yogurt,100,g,Dairy,60
+Beef Tacos,Ground Beef,250,g,Meat,320
+Beef Tacos,Taco Shell,3,pcs,Grain,180
+Beef Tacos,Lettuce,100,g,Vegetable,15
+Beef Tacos,Tomato,1,pcs,Vegetable,20
+Beef Tacos,Cheese,50,g,Dairy,200
+Beef Tacos,Sour Cream,30,ml,Dairy,60

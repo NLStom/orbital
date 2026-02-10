@@ -1,0 +1,26 @@
+review_id,employee_id,review_date,rating,reviewer_id,quarter,goals_met,comments
+R001,E001,2024-04-15,4.2,E010,Q1-2024,true,Excellent technical leadership
+R002,E002,2024-04-15,3.8,E010,Q1-2024,true,Solid performance
+R003,E003,2024-04-15,4.5,E001,Q1-2024,true,Outstanding growth for junior level
+R004,E004,2024-04-15,3.5,E011,Q1-2024,true,Meeting expectations
+R005,E005,2024-04-15,3.2,E004,Q1-2024,false,Needs improvement on deadlines
+R006,E006,2024-04-15,4.3,E004,Q1-2024,true,Exceptional SEO results
+R007,E007,2024-04-15,3.9,E012,Q1-2024,true,Strong client relationships
+R008,E008,2024-04-15,3.1,E012,Q1-2024,false,Below quota
+R009,E009,2024-04-15,4.4,E007,Q1-2024,true,Top performer in remote sales
+R010,E014,2024-04-15,4.6,E010,Q1-2024,true,Exceptional code quality
+R011,E015,2024-04-15,3.7,E001,Q1-2024,true,Consistent performer
+R012,E016,2024-04-15,4.2,E001,Q1-2024,true,Quick learner great initiative
+R013,E017,2024-04-15,4.1,E012,Q1-2024,true,Strong start
+R014,E019,2024-04-15,4.4,E018,Q1-2024,true,Excellent product instincts
+R015,E021,2024-04-15,4.7,E010,Q1-2024,true,Technical excellence
+R016,E023,2024-04-15,4.3,E001,Q1-2024,true,Fast ramp-up impressive output
+R017,E025,2024-04-15,4.0,E007,Q1-2024,true,Great attitude solid numbers
+R018,E001,2024-07-15,4.3,E010,Q2-2024,true,Continued strong leadership
+R019,E002,2024-07-15,3.9,E010,Q2-2024,true,Improving steadily
+R020,E003,2024-07-15,4.6,E001,Q2-2024,true,Ready for promotion consideration
+R021,E006,2024-07-15,4.5,E004,Q2-2024,true,Driving significant traffic growth
+R022,E009,2024-07-15,4.5,E007,Q2-2024,true,Exceeding all targets
+R023,E014,2024-07-15,4.7,E010,Q2-2024,true,Star performer
+R024,E021,2024-07-15,4.8,E010,Q2-2024,true,Exceptional quarter
+R025,E023,2024-07-15,4.4,E001,Q2-2024,true,Consistent excellence

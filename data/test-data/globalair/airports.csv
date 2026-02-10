@@ -1,0 +1,11 @@
+airport_code,city,country,timezone,hub_type,annual_passengers_millions
+LHR,London,UK,Europe/London,major,80.9
+JFK,New York,USA,America/New_York,major,62.5
+LAX,Los Angeles,USA,America/Los_Angeles,major,88.1
+NRT,Tokyo,Japan,Asia/Tokyo,major,43.2
+CDG,Paris,France,Europe/Paris,major,76.2
+DXB,Dubai,UAE,Asia/Dubai,major,89.1
+SIN,Singapore,Singapore,Asia/Singapore,major,68.3
+PEK,Beijing,China,Asia/Shanghai,major,100.0
+ICN,Seoul,South Korea,Asia/Seoul,major,71.2
+SYD,Sydney,Australia,Australia/Sydney,regional,44.4

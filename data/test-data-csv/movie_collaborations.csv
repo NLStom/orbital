@@ -1,0 +1,21 @@
+actor_a,actor_b,movie,year,genre,box_office_millions
+Leonardo DiCaprio,Tom Hardy,Inception,2010,Sci-Fi,836
+Leonardo DiCaprio,Tom Hardy,The Revenant,2015,Drama,533
+Leonardo DiCaprio,Cate Blanchett,The Aviator,2004,Drama,213
+Leonardo DiCaprio,Margot Robbie,The Wolf of Wall Street,2013,Comedy,392
+Leonardo DiCaprio,Brad Pitt,Once Upon a Time in Hollywood,2019,Drama,374
+Brad Pitt,Cate Blanchett,The Curious Case of Benjamin Button,2008,Drama,334
+Brad Pitt,Margot Robbie,The Big Short,2015,Drama,133
+Brad Pitt,George Clooney,Ocean's Eleven,2001,Crime,450
+Brad Pitt,George Clooney,Ocean's Thirteen,2007,Crime,311
+George Clooney,Cate Blanchett,Gravity,2013,Sci-Fi,723
+Tom Hardy,Cate Blanchett,Mad Max: Fury Road,2015,Action,375
+Tom Hardy,Cillian Murphy,Inception,2010,Sci-Fi,836
+Tom Hardy,Cillian Murphy,Dunkirk,2017,War,527
+Tom Hardy,Cillian Murphy,Peaky Blinders,2013,Crime,0
+Cillian Murphy,Florence Pugh,Oppenheimer,2023,Drama,952
+Florence Pugh,Scarlett Johansson,Black Widow,2021,Action,379
+Scarlett Johansson,Robert Downey Jr,The Avengers,2012,Action,1519
+Robert Downey Jr,Cate Blanchett,Avengers: Infinity War,2018,Action,2048
+Robert Downey Jr,George Clooney,Good Night and Good Luck,2005,Drama,54
+Margot Robbie,Florence Pugh,Don't Worry Darling,2022,Thriller,87
