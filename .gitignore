@@ -32,5 +32,8 @@ data/sessions/
 data/schemas/
 data/artifacts/
 
+# Docs
+docs/
+
 # uv
 uv.lock
