@@ -2,7 +2,7 @@
 
 from datetime import UTC, datetime
 
-from app.storage.file_storage import FileStorage
+from app.storage.pg_session_storage import PgSessionStorage
 
 VALID_CATEGORIES = {"fact", "preference", "correction", "conclusion"}
 VALID_ACTIONS = {"add", "remove"}
@@ -33,7 +33,7 @@ class MemoryTool:
 
     name = "update_memory"
 
-    def __init__(self, storage: FileStorage):
+    def __init__(self, storage: PgSessionStorage):
         self._storage = storage
 
     def execute(

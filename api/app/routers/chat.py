@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 from app.dependencies import get_agent_for_source, get_storage
 from app.models import ChatRequest, ChatResponse
 from app.providers.factory import AVAILABLE_MODELS
-from app.storage.file_storage import FileStorage
+from app.storage.pg_session_storage import PgSessionStorage
 
 router = APIRouter(prefix="/api", tags=["chat"])
 
@@ -50,7 +50,7 @@ def _format_provider_error(exc: Exception) -> str:
 
 @router.post("/chat", response_model=ChatResponse)
 async def chat(
-    request: ChatRequest, storage: FileStorage = Depends(get_storage)
+    request: ChatRequest, storage: PgSessionStorage = Depends(get_storage)
 ):
     """
     Process a chat message with session-based persistence.

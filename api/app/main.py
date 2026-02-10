@@ -34,12 +34,22 @@ async def lifespan(app: FastAPI):
     # Startup
     logger.info("Initializing Orbital API...")
 
-    # Ensure prebuilt datasets exist with table discovery
+    # Initialize session storage tables
     try:
         from app.config import get_settings
-        from app.storage.dataset_storage import DatasetStorage
+        from app.storage.pg_session_storage import PgSessionStorage
 
         settings = get_settings()
+        session_storage = PgSessionStorage(database_url=settings.database_url)
+        session_storage.initialize()
+        logger.info("Session storage tables initialized")
+    except Exception as e:
+        logger.warning(f"Failed to initialize session storage: {e}")
+
+    # Ensure prebuilt datasets exist with table discovery
+    try:
+        from app.storage.dataset_storage import DatasetStorage
+
         dataset_storage = DatasetStorage(database_url=settings.database_url)
         dataset_storage.initialize()
 

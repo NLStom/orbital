@@ -15,7 +15,7 @@ from app.schemas.sessions import (
     SessionUpdate,
 )
 from app.services.schema_generator import SchemaGenerator
-from app.storage.file_storage import FileStorage
+from app.storage.pg_session_storage import PgSessionStorage
 from app.storage.dataset_storage import DatasetStorage
 from app.routers.datasets import get_dataset_storage, get_database_url
 from app.providers.factory import ProviderFactory
@@ -33,7 +33,7 @@ class GenerateTitleResponse(BaseModel):
 
 
 @router.get("", response_model=SessionListResponse)
-def list_sessions(storage: FileStorage = Depends(get_storage)):
+def list_sessions(storage: PgSessionStorage = Depends(get_storage)):
     """List all sessions, sorted by updatedAt descending."""
     sessions = storage.list_sessions()
     return {"sessions": sessions}
@@ -42,7 +42,7 @@ def list_sessions(storage: FileStorage = Depends(get_storage)):
 @router.post("", status_code=status.HTTP_201_CREATED, response_model=Session)
 def create_session(
     request: SessionCreate,
-    storage: FileStorage = Depends(get_storage),
+    storage: PgSessionStorage = Depends(get_storage),
     dataset_storage: DatasetStorage = Depends(get_dataset_storage),
 ):
     """Create a new session, optionally with datasets attached."""
@@ -91,7 +91,7 @@ def create_session(
 
 @router.get("/{session_id}", response_model=Session)
 def get_session(
-    session_id: str, storage: FileStorage = Depends(get_storage)
+    session_id: str, storage: PgSessionStorage = Depends(get_storage)
 ):
     """Get a session by ID with messages and insights."""
     session = storage.get_session(session_id)
@@ -102,7 +102,7 @@ def get_session(
 
 @router.put("/{session_id}", response_model=Session)
 def update_session(
-    session_id: str, request: SessionUpdate, storage: FileStorage = Depends(get_storage)
+    session_id: str, request: SessionUpdate, storage: PgSessionStorage = Depends(get_storage)
 ):
     """Update a session (name, addMessage, addInsight, updateInsight)."""
     session = storage.get_session(session_id)
@@ -126,7 +126,7 @@ def update_session(
 @router.post("/{session_id}/generate-title", response_model=GenerateTitleResponse)
 async def generate_session_title(
     session_id: str,
-    storage: FileStorage = Depends(get_storage),
+    storage: PgSessionStorage = Depends(get_storage),
     dataset_storage: DatasetStorage = Depends(get_dataset_storage),
     provider_factory: ProviderFactory = Depends(get_provider_factory),
 ):
@@ -238,7 +238,7 @@ Return ONLY the title text, nothing else."""
 
 @router.get("/{session_id}/schema")
 def get_session_schema(
-    session_id: str, storage: FileStorage = Depends(get_storage)
+    session_id: str, storage: PgSessionStorage = Depends(get_storage)
 ):
     """
     Get ER diagram schema scoped to a session's data source and datasets.
@@ -269,7 +269,7 @@ def get_session_schema(
 @router.delete("/{session_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_session(
     session_id: str,
-    storage: FileStorage = Depends(get_storage),
+    storage: PgSessionStorage = Depends(get_storage),
     database_url: str = Depends(get_database_url),
 ):
     """Delete a session and clean up derived tables."""
@@ -318,7 +318,7 @@ def delete_session(
 
 
 @router.delete("", response_model=dict)
-def delete_empty_sessions(storage: FileStorage = Depends(get_storage)):
+def delete_empty_sessions(storage: PgSessionStorage = Depends(get_storage)):
     """Delete all sessions with zero messages and zero datasets."""
     deleted_count = storage.delete_empty_sessions()
     return {"deleted": deleted_count}

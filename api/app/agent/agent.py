@@ -28,7 +28,7 @@ from app.tools.report import CreateReportTool
 
 if TYPE_CHECKING:
     from app.providers.base import LLMProvider
-    from app.storage.file_storage import FileStorage
+    from app.storage.pg_session_storage import PgSessionStorage
 
 class OrbitalAgent:
     """
@@ -45,7 +45,7 @@ class OrbitalAgent:
         data_loader: DataLoader | None = None,
         dataset_storage: Any = None,
         database_url: str | None = None,
-        storage: Optional["FileStorage"] = None,
+        storage: Optional["PgSessionStorage"] = None,
     ):
         """
         Initialize the OrbitalAgent.

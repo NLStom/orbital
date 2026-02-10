@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from app.dependencies import get_storage
 from app.routers.datasets import get_dataset_storage, get_database_url
 from app.storage.dataset_storage import DatasetStorage
-from app.storage.file_storage import FileStorage
+from app.storage.pg_session_storage import PgSessionStorage
 
 router = APIRouter(prefix="/api/sessions", tags=["session-datasets"])
 
@@ -20,7 +20,7 @@ class AttachDatasetRequest(BaseModel):
 def attach_dataset(
     session_id: str,
     request: AttachDatasetRequest,
-    storage: FileStorage = Depends(get_storage),
+    storage: PgSessionStorage = Depends(get_storage),
     dataset_storage: DatasetStorage = Depends(get_dataset_storage),
 ):
     """Attach a dataset to a session."""
@@ -40,7 +40,7 @@ def attach_dataset(
 def detach_dataset(
     session_id: str,
     dataset_id: str,
-    storage: FileStorage = Depends(get_storage),
+    storage: PgSessionStorage = Depends(get_storage),
 ):
     """Detach a dataset from a session."""
     session = storage.get_session(session_id)
@@ -54,7 +54,7 @@ def detach_dataset(
 @router.get("/{session_id}/datasets")
 def list_session_datasets(
     session_id: str,
-    storage: FileStorage = Depends(get_storage),
+    storage: PgSessionStorage = Depends(get_storage),
     dataset_storage: DatasetStorage = Depends(get_dataset_storage),
 ):
     """List datasets attached to a session."""
@@ -84,7 +84,7 @@ class DerivedTable(BaseModel):
 @router.get("/{session_id}/derived-tables")
 def list_derived_tables(
     session_id: str,
-    storage: FileStorage = Depends(get_storage),
+    storage: PgSessionStorage = Depends(get_storage),
     database_url: str = Depends(get_database_url),
 ):
     """

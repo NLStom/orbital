@@ -2,8 +2,6 @@
 FastAPI dependencies for dependency injection.
 """
 
-from functools import lru_cache
-
 import anthropic
 
 from app.agent import OrbitalAgent
@@ -11,13 +9,21 @@ from app.config import get_settings
 from app.data.loader import DataLoader
 from app.providers.factory import AVAILABLE_MODELS, ProviderFactory
 from app.storage.dataset_storage import DatasetStorage
-from app.storage.file_storage import FileStorage
+from app.storage.pg_session_storage import PgSessionStorage
 
 
-@lru_cache
-def get_storage() -> FileStorage:
-    """Get FileStorage singleton for dependency injection."""
-    return FileStorage()
+# Session storage singleton
+_session_storage: PgSessionStorage | None = None
+
+
+def get_storage() -> PgSessionStorage:
+    """Get PgSessionStorage singleton for dependency injection."""
+    global _session_storage
+    if _session_storage is None:
+        settings = get_settings()
+        _session_storage = PgSessionStorage(database_url=settings.database_url)
+        _session_storage.initialize()
+    return _session_storage
 
 
 # Dataset storage singleton
@@ -144,7 +150,8 @@ def get_agent() -> OrbitalAgent:
 
 def reset_agent() -> None:
     """Reset all agent instances (useful for testing)."""
-    global _agents, _factory, _dataset_storage
+    global _agents, _factory, _dataset_storage, _session_storage
     _agents = {}
     _factory = None
     _dataset_storage = None
+    _session_storage = None

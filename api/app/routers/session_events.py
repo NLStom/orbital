@@ -11,7 +11,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, Field
 
 from app.dependencies import get_storage
-from app.storage.file_storage import FileStorage
+from app.storage.pg_session_storage import PgSessionStorage
 
 router = APIRouter(prefix="/api/sessions", tags=["session-events"])
 
@@ -28,7 +28,7 @@ class SystemEventCreate(BaseModel):
 def create_session_event(
     session_id: str,
     event: SystemEventCreate,
-    storage: FileStorage = Depends(get_storage),
+    storage: PgSessionStorage = Depends(get_storage),
 ):
     """
     Log a system event as a message in the session.
