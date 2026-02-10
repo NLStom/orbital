@@ -23,7 +23,7 @@ services:
       - key: GOOGLE_GENAI_USE_VERTEXAI
         value: "true"
       - key: ALLOWED_ORIGINS
-        value: ""
+        value: "https://www.getgraphiton.com,https://getgraphiton.com"
       - key: ALLOWED_ORIGIN_PATTERN
         value: ".*\\.vercel\\.app"
       - key: PYTHON_VERSION
