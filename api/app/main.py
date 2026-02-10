@@ -67,6 +67,8 @@ app = FastAPI(
 _default_allowed_origins = [
     "http://localhost:3737",  # matches pm2 dev script
     "http://localhost:3000",  # matches `npm run dev` default
+    "https://www.getgraphiton.com",  # production frontend
+    "https://getgraphiton.com",  # production frontend (no www)
 ]
 env_origins = os.getenv("ALLOWED_ORIGINS")
 if env_origins:
