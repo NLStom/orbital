@@ -154,46 +154,58 @@ async def upload_dataset(
     raise HTTPException(status_code=500, detail="Failed to retrieve uploaded dataset")
 
 
-@router.post("/seed-demo", status_code=status.HTTP_201_CREATED, response_model=Dataset)
-def seed_demo_dataset(
-    storage: DatasetStorage = Depends(get_dataset_storage),
-    database_url: str = Depends(get_database_url),
-):
-    """
-    Seed the demo dataset from data/demo/ CSV files.
+# --- Public dataset seeding ---
 
-    Idempotent: if a dataset named 'US Housing Market' already exists, returns it.
-    """
-    from pathlib import Path
+from pathlib import Path
 
-    DEMO_NAME = "US Housing Market"
+_DATA_ROOT = Path(__file__).parent.parent.parent.parent / "data"
 
-    # Check if demo dataset already exists
-    existing = storage.list_datasets()
-    for ds in existing:
-        if ds["name"] == DEMO_NAME:
-            return Dataset(**ds)
+PUBLIC_DATASET_DEFS: list[dict] = [
+    {"name": "US Housing Market", "dir": "data/demo", "files": ["home_values.csv", "economic.csv", "mortgage_rates.csv", "rents.csv"]},
+    {"name": "FreshMart", "dir": "data/test-data/freshmart", "files": ["customers.csv", "products.csv", "suppliers.csv", "orders.csv", "inventory_shipments.csv"]},
+    {"name": "TechCorp", "dir": "data/test-data/techcorp", "files": ["departments.csv", "employees.csv", "performance_reviews.csv", "training_courses.csv", "training_enrollment.csv"]},
+    {"name": "GlobalAir", "dir": "data/test-data/globalair", "files": ["airports.csv", "routes.csv", "weather.csv", "delays.csv"]},
+    {"name": "Ecommerce Orders", "dir": "data/test-data-csv", "files": ["ecommerce_orders.csv"]},
+    {"name": "Employee Departments", "dir": "data/test-data-csv", "files": ["employee_departments.csv"]},
+    {"name": "Flight Routes", "dir": "data/test-data-csv", "files": ["flight_routes.csv"]},
+    {"name": "Fruit Sales", "dir": "data/test-data-csv", "files": ["fruit_sales.csv"]},
+    {"name": "Movie Collaborations", "dir": "data/test-data-csv", "files": ["movie_collaborations.csv"]},
+    {"name": "Personal Spending", "dir": "data/test-data-csv", "files": ["personal_spending.csv"]},
+    {"name": "Recipe Ingredients", "dir": "data/test-data-csv", "files": ["recipe_ingredients.csv"]},
+    {"name": "Rideshare", "dir": "data/test-data-csv", "files": ["rideshare_dataset_without_missing_values.csv"]},
+    {"name": "Social Network", "dir": "data/test-data-csv", "files": ["social_network.csv"]},
+    {"name": "Student Grades", "dir": "data/test-data-csv", "files": ["student_grades.csv"]},
+    {"name": "Weather Daily", "dir": "data/test-data-csv", "files": ["weather_daily.csv"]},
+]
 
-    # Locate demo CSV files (only core tables — others can be added later)
-    demo_dir = Path(__file__).parent.parent.parent.parent / "data" / "demo"
-    DEMO_FILES = ["home_values.csv", "economic.csv"]
-    csv_files = [demo_dir / f for f in DEMO_FILES if (demo_dir / f).exists()]
-    if not csv_files:
-        raise HTTPException(status_code=404, detail="No demo CSV files found")
+
+def _seed_dataset_from_csvs(
+    name: str,
+    csv_dir: Path,
+    csv_files: list[str],
+    storage: DatasetStorage,
+    database_url: str,
+) -> dict | None:
+    """Seed a single public dataset from CSV files. Returns dataset dict or None on failure."""
+    csv_paths = [csv_dir / f for f in csv_files if (csv_dir / f).exists()]
+    if not csv_paths:
+        logger.warning(f"No CSV files found for dataset '{name}' in {csv_dir}")
+        return None
 
     # Parse all CSVs
     parsed_files = []
-    for csv_path in csv_files:
+    for csv_path in csv_paths:
         content = csv_path.read_bytes()
         try:
             df = parse_csv(content)
         except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Failed to parse '{csv_path.name}': {e}")
+            logger.error(f"Failed to parse '{csv_path.name}' for dataset '{name}': {e}")
+            return None
         table_name = sanitize_table_name(csv_path.name)
         parsed_files.append((table_name, df, csv_path.name))
 
     # Create dataset record
-    dataset = storage.create_dataset(name=DEMO_NAME, visibility="public")
+    dataset = storage.create_dataset(name=name, visibility="public")
     dataset_id = dataset["id"]
 
     # Load each CSV into PG
@@ -202,9 +214,9 @@ def seed_demo_dataset(
         try:
             row_count = load_dataframe_to_pg(df=df, pg_table_name=pg_table_name, database_url=database_url)
         except Exception as e:
-            logger.error(f"Failed to load demo '{filename}' into PG: {e}")
+            logger.error(f"Failed to load '{filename}' into PG for dataset '{name}': {e}")
             storage.delete_dataset(dataset_id)
-            raise HTTPException(status_code=500, detail=f"Failed to load '{filename}' into database")
+            return None
 
         columns = list(df.columns)
         dtypes = {col: _pandas_dtype_to_pg_label(df[col].dtype) for col in columns}
@@ -217,10 +229,60 @@ def seed_demo_dataset(
             dtypes=dtypes,
         )
 
-    dataset_dict = storage.get_dataset(dataset_id)
-    if dataset_dict:
-        return Dataset(**dataset_dict)
-    raise HTTPException(status_code=500, detail="Failed to retrieve seeded dataset")
+    return storage.get_dataset(dataset_id)
+
+
+def seed_all_public_datasets(storage: DatasetStorage, database_url: str):
+    """Seed all public datasets defined in PUBLIC_DATASET_DEFS. Idempotent."""
+    existing_names = {ds["name"] for ds in storage.list_datasets(visibility="public")}
+    seeded = 0
+    for defn in PUBLIC_DATASET_DEFS:
+        if defn["name"] in existing_names:
+            continue
+        csv_dir = _DATA_ROOT / defn["dir"].removeprefix("data/")
+        result = _seed_dataset_from_csvs(
+            name=defn["name"],
+            csv_dir=csv_dir,
+            csv_files=defn["files"],
+            storage=storage,
+            database_url=database_url,
+        )
+        if result:
+            seeded += 1
+            logger.info(f"Seeded public dataset: {defn['name']}")
+    logger.info(f"Public dataset seeding complete: {seeded} new, {len(existing_names)} already existed")
+
+
+@router.post("/seed-demo", status_code=status.HTTP_201_CREATED, response_model=Dataset)
+def seed_demo_dataset(
+    storage: DatasetStorage = Depends(get_dataset_storage),
+    database_url: str = Depends(get_database_url),
+):
+    """
+    Seed the demo dataset from data/demo/ CSV files.
+
+    Idempotent: if a dataset named 'US Housing Market' already exists, returns it.
+    """
+    DEMO_NAME = "US Housing Market"
+    DEMO_DEF = PUBLIC_DATASET_DEFS[0]  # US Housing Market
+
+    # Check if demo dataset already exists
+    existing = storage.list_datasets()
+    for ds in existing:
+        if ds["name"] == DEMO_NAME:
+            return Dataset(**ds)
+
+    csv_dir = _DATA_ROOT / DEMO_DEF["dir"].removeprefix("data/")
+    result = _seed_dataset_from_csvs(
+        name=DEMO_NAME,
+        csv_dir=csv_dir,
+        csv_files=DEMO_DEF["files"],
+        storage=storage,
+        database_url=database_url,
+    )
+    if result:
+        return Dataset(**result)
+    raise HTTPException(status_code=500, detail="Failed to seed demo dataset")
 
 
 MAX_PREVIEW_LIMIT = 1000

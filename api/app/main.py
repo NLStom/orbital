@@ -56,6 +56,10 @@ async def lifespan(app: FastAPI):
         # Bootstrap prebuilt datasets (discovers tables from PostgreSQL)
         dataset_storage.ensure_prebuilt_datasets()
         logger.info("Prebuilt datasets initialized")
+
+        # Seed all public datasets from data/ CSV files
+        from app.routers.datasets import seed_all_public_datasets
+        seed_all_public_datasets(storage=dataset_storage, database_url=settings.database_url)
     except Exception as e:
         # Don't crash the app if bootstrap fails
         logger.warning(f"Failed to initialize prebuilt datasets: {e}")
