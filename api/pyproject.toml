@@ -1,0 +1,65 @@
+[project]
+name = "orbital-api"
+version = "0.1.0"
+description = "AI-powered exploratory data analysis agent"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "websockets>=12.0",
+    "google-genai>=1.0.0",
+    "pandas>=2.0.0",
+    "pyarrow>=14.0.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "psycopg[binary]>=3.1",
+    "python-multipart>=0.0.22",
+    "scikit-learn>=1.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "httpx>=0.25.0",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.8.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-v"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes (unused imports, undefined names)
+    "I",      # isort (import ordering)
+    "B",      # flake8-bugbear (common pitfalls)
+    "ASYNC",  # flake8-async (async correctness)
+    "UP",     # pyupgrade (modern Python syntax)
+]
+ignore = [
+    "E501",   # line length (handled by formatter)
+    "E402",   # module level import not at top (logger before imports pattern)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
