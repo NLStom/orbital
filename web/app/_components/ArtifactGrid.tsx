@@ -10,18 +10,10 @@ interface ArtifactGridProps {
 }
 
 const DATA_SOURCE_COLORS: Record<DataSourceType, string> = {
-  vndb: "bg-purple-100 text-purple-700",
-  vndb_collaboration: "bg-pink-100 text-pink-700",
-  polymarket: "bg-blue-100 text-blue-700",
-  steam: "bg-green-100 text-green-700",
   custom: "bg-gray-100 text-gray-700",
 };
 
 const DATA_SOURCE_LABELS: Record<DataSourceType, string> = {
-  vndb: "VNDB",
-  vndb_collaboration: "VNDB Collaboration",
-  polymarket: "Polymarket",
-  steam: "Steam",
   custom: "Custom",
 };
 

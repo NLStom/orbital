@@ -8,10 +8,6 @@ import { ChartRenderer } from "@/app/_components/visualization/ChartRenderer";
 import { ReportRenderer, type ReportSection } from "@/app/_components/ReportRenderer";
 
 const DATA_SOURCE_LABELS: Record<DataSourceType, string> = {
-  vndb: "VNDB",
-  vndb_collaboration: "VNDB Collaboration",
-  polymarket: "Polymarket",
-  steam: "Steam",
   custom: "Custom",
 };
 
